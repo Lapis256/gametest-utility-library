@@ -17,7 +17,7 @@ export class Player {
     }
 
     static getAll() {
-        return World.getPlayers().map(Player.get);
+        return World.getPlayers().map(p => new Player(p));
     }
 
     getAllTags() {
