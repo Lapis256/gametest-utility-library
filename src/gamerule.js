@@ -11,7 +11,7 @@ export const GameRule = new (class {
             case "false":
                 return false;
             default:
-                return Number(rawValue);
+                return Number(value);
         }
     }    
     
