@@ -10,8 +10,9 @@ gametestに便利な機能を提供するライブラリです。
 - [使い方](#%E4%BD%BF%E3%81%84%E6%96%B9)
   - [import方法](#import%E6%96%B9%E6%B3%95)
   - [Event](#event)
-  - [Tick](#tick)
     - [基本的な使い方](#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E4%BD%BF%E3%81%84%E6%96%B9)
+  - [Tick](#tick)
+    - [基本的な使い方](#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E4%BD%BF%E3%81%84%E6%96%B9-1)
     - [止める方法](#%E6%AD%A2%E3%82%81%E3%82%8B%E6%96%B9%E6%B3%95)
 
 </details>
