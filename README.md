@@ -1,8 +1,8 @@
 # gametest-utility-library
 gametestに便利な機能を提供するライブラリです。
 
-# 目次
-- [導入方法](#導入方法)
+<!-- START doctoc -->
+<!-- END doctoc -->
 
 ## 導入方法
 ダウンロードし scripts フォルダに以下のように貼り付けてください。
