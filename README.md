@@ -6,7 +6,7 @@ gametestに便利な機能を提供するライブラリです。
 <!-- param::title::**目次**:: -->
 <!-- param::isFolding::true:: -->
 <details>
-<summary>'**目次**'</summary>
+<summary>目次</summary>
 
 - [導入方法](#%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)
 - [使い方](#%E4%BD%BF%E3%81%84%E6%96%B9)
