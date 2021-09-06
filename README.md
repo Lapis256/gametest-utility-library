@@ -3,7 +3,7 @@ gametestに便利な機能を提供するライブラリです。
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<!-- param::title::**目次**:: -->
+<!-- param::isFolding::true:: -->
 **目次**
 
 - [導入方法](#%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)
