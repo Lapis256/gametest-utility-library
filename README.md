@@ -3,8 +3,7 @@ gametestに便利な機能を提供するライブラリです。
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<details>
-<summary>Table of Contents</summary>
+**Table of Contents**
 
 - [導入方法](#%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)
 - [使い方](#%E4%BD%BF%E3%81%84%E6%96%B9)
@@ -14,7 +13,6 @@ gametestに便利な機能を提供するライブラリです。
     - [基本的な使い方](#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E4%BD%BF%E3%81%84%E6%96%B9)
     - [止める方法](#%E6%AD%A2%E3%82%81%E3%82%8B%E6%96%B9%E6%B3%95)
 
-</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## 導入方法
