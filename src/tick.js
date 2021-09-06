@@ -51,22 +51,22 @@ export const Tick = new (class {
     }
 
     setInterval(callback, interval) {
-        return intervalHandler.add(
+        return this.#intervalHandler.add(
             new Interval(callback, interval, false)
         );
     }
 
     clearInterval(id) {
-        intervalHandler.remove(id);
+        this.#intervalHandler.remove(id);
     }
 
     setTimeout(callback, timeout) {
-        return intervalHandler.add(
+        return this.#intervalHandler.add(
             new Interval(callback, timeout, true)
         );
     }
 
     clearTimeout(id) {
-        intervalHandler.remove(id);
+        this.#intervalHandler.remove(id);
     }
 })();
