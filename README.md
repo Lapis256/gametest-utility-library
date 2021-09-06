@@ -36,6 +36,7 @@ import { <インポートするもの> } from "./gametest-utility-library/index.
 
 ### Event
 イベントを簡潔に書けるようになります。
+#### 基本的な使い方
 ```js
 import { Event } from "./gametest-utility-library/index.js";
 
