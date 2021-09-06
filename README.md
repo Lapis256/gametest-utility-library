@@ -54,7 +54,7 @@ Event.on("beforeChat", eventData => {
     eventData.message = "にゃーん";
 });
 ```
-
+### 削除する方法
 ### Tick
 数tick毎、数tick後と言った処理を簡潔に書けるようになります。
 #### 基本的な使い方
