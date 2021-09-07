@@ -1,7 +1,7 @@
 import { Command } from "./command.js";
 
 
-export function print(text) {
+export function print(...obj) {
     // TODO
 
     //Commands.run(`tellraw @a {"rawtext":[{"text":"${text}"}]}`);
@@ -9,7 +9,7 @@ export function print(text) {
     //Commands.run(`tellraw @a {"rawtext":[{"text":"${escape(text)}"}]}`);
     // const rawText = JSON.stringify({rawtext: [{text: text}]});
     // commandRun("tellraw @a " + rawText);
-    Command.run(`say Debug: ${text}`);
+    Command.run(`say Debug: ${obj}`);
 }
 
 export function toJson(data, indent = 4) {
