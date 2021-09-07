@@ -24,9 +24,9 @@ gametestに便利な機能を提供するライブラリです。
 ```
 scripts
 ├─ gametest-utility-library (名前を変更しても構いません)
-│  ├─ src
-│  │  └─ ...
-│  └─ index.js
+│  ├─ index.js
+│  └─ src
+│     └─ ...
 └─ index.js (manifest.json の entry で指定したファイル)
 ```
 
@@ -109,7 +109,7 @@ print(128);
 print([1, 1, 2, 3, 5, 8, 13])
 // 1,1,2,3,5,8,13
 print({a: 2, b: 5, c: 6});
-// [Object Object]
+// [object Object]
 ```
 複数指定することが可能で、空白で区切られて表示されます。
 ```js
@@ -147,7 +147,7 @@ error(128);
 error([1, 1, 2, 3, 5, 8, 13])
 // §4ERROE: 1,1,2,3,5,8,13
 error({a: 2, b: 5, c: 6});
-// §4ERROE: [Object Object]
+// §4ERROE: [object Object]
 ```
 #### warn
 `§eWARN: `が先頭につくprintです。
@@ -161,12 +161,12 @@ warn(128);
 warn([1, 1, 2, 3, 5, 8, 13])
 // §eWARN: 1,1,2,3,5,8,13
 warn({a: 2, b: 5, c: 6});
-// §eWARN: [Object Object]
+// §eWARN: [object Object]
 ```
 #### toJson
 JSON.stringifyのラッパーです。  
 インデントはデフォルトでスペース4つです。  
-また、オブジェクト内に関数があった場合値を`[Fanction]`に置き換えて処理します。
+また、オブジェクト内に関数、クラスがあった場合値をそれぞれ`[function <Function Name>]`、`[class <Class Name>]`に置き換えて処理します。
 ```js
 import { print, toJson } from "./gametest-utility-library/index.js";
 
@@ -176,6 +176,6 @@ print(toJson({a: 0}));
 }*/
 print(toJson({a: 0}, 0));
 /*{"a": 0}*/
-print(toJson({a: function(){}}, 0));
-/*{"a": "[Function]"}*/
+print(toJson({a: function(){}, b: class {}}, 0));
+/*{"a": "[function <Function Name>]", "b": "[class <Class Name>]"}*/
 ```
