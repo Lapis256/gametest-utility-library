@@ -32,15 +32,16 @@ export const Event = new (class {
             callback: newCallback,
             originalCallback: callback
         }
-        callbacks.push(callbackData);
+        this.#callbacks.push(callbackData);
     }
 
     off(callback) {
-        const callbacks = this.#callbacks.filter(
-            v => v.originalCallback === callback
-        );
-        for(const { callback, eventName } of callbacks) {
-            World.events[eventName].unsubscribe(callback);
-        }
+        this.#callbacks = this.#callbacks.filter(c => {
+            if(c.originalCallback !== callback) {
+                return true;
+            }
+            World.events[c.eventName].unsubscribe(c.callback);
+            return false;
+        });
     }
 })();
