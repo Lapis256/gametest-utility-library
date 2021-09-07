@@ -21,6 +21,6 @@ export function toJson(data, indent = 4) {
     }, indent);
 }
 
-export function pprint(data, indent) {
-    print(toJson(json, indent));
+export function pprint(...obj) {
+    print(...obj.map(toJson));
 }
