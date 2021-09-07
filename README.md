@@ -57,7 +57,18 @@ Event.on("beforeChat", eventData => {
 });
 ```
 #### 削除する方法
+`Event.off`に登録したコールバック関数を渡す事で削除可能です。
+```js
+import { Event } from "./gametest-utility-library/index.js";
 
+const callback = (eventData) => {
+    // 処理
+}
+
+Event.on("<イベント名>", callback);
+
+Event.off(callback);
+```
 ### Tick
 数tick毎、数tick後と言った処理を簡潔に書けるようになります。
 #### 基本的な使い方
