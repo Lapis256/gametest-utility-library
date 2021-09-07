@@ -9,7 +9,17 @@ export function print(...obj) {
     //Commands.run(`tellraw @a {"rawtext":[{"text":"${escape(text)}"}]}`);
     // const rawText = JSON.stringify({rawtext: [{text: text}]});
     // commandRun("tellraw @a " + rawText);
-    Command.run(`say Debug: ${obj}`);
+    //Command.run(`say Debug: ${obj}`);
+    const rawtext = JSON.stringify({rawtext: [{text: obj.join(" ")}]});
+    Command.run("tellraw @a " + rawtext);
+}
+
+export function error(...obj) {
+    print("§4ERROR:", ...obj);
+}
+
+export function warn(...obj) {
+    print("§eWARN:", ...obj);
 }
 
 export function toJson(data, indent = 4) {
