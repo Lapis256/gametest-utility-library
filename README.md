@@ -23,10 +23,11 @@ gametestに便利な機能を提供するライブラリです。
 ダウンロードし scripts フォルダに以下のように貼り付けてください。
 ```
 scripts
-├gametest-utility-library (名前を変更しても構いません)
-│                       ├src
-│                       └index.js
-└index.js (manifest.json の entry で指定したファイル)
+├─ gametest-utility-library (名前を変更しても構いません)
+│  ├─ src
+│  │  └─ ...
+│  └─ index.js
+└─ index.js (manifest.json の entry で指定したファイル)
 ```
 
 ## 使い方
@@ -56,6 +57,7 @@ Event.on("beforeChat", eventData => {
 });
 ```
 #### 削除する方法
+
 ### Tick
 数tick毎、数tick後と言った処理を簡潔に書けるようになります。
 #### 基本的な使い方
