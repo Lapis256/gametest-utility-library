@@ -5,13 +5,11 @@ import { print } from "./utils.js";
 
 export const Event = new (class {
     /*
-    {
-        <eventName>: [
-            { callback, originalCallback }
-        ]
-    }
+    [
+        { callback, originalCallback, eventName }
+    ]
     */
-    #callbacks = {};
+    #callbacks = [];
 
     on(eventName, callback) {
         const event = World.events[eventName];
@@ -30,31 +28,19 @@ export const Event = new (class {
         event.subscribe(newCallback);
         
         const callbackData = {
+            eventName,
             callback: newCallback,
             originalCallback: callback
         }
-        const callbacks = this.#callbacks[eventName];
-        if(callbacks) {
-            callbacks.push(callbackData);
-            return;
-        }
-        this.#callbacks[eventName] = [callbackData];
+        callbacks.push(callbackData);
     }
 
-    off(eventName, callback) {
-        const event = World.events[eventName];
-        if(!event) {
-            throw new EventNotDefined(eventName);
-        }
-        
-        const eventCallbacks = this.#callbacks[eventName];
-        if(!eventCallbacks) return;
-        
-        const callbacks = eventCallbacks.filter(
+    off(callback) {
+        const callbacks = this.#callbacks.filter(
             v => v.originalCallback === callback
         );
-        for(const { callback } of callbacks) {
-            event.unsubscribe(callback);
+        for(const { callback, eventName } of callbacks) {
+            World.events[eventName].unsubscribe(callback);
         }
     }
 })();
