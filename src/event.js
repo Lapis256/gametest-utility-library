@@ -4,6 +4,15 @@ import { print } from "./utils.js";
 
 
 export const Event = new (class {
+    /*
+    {
+        <eventName>: [
+            { callback, originalCallback }
+        ]
+    }
+    */
+    #callbacks = {};
+
     on(eventName, callback) {
         const event = World.events[eventName];
         if(!event) {
@@ -17,8 +26,19 @@ export const Event = new (class {
                 print("Event Running Error: " + e);
             }
         }
+        
         event.subscribe(newCallback);
-        return newCallback;
+        
+        const callbackData = {
+            callback: newCallback,
+            originalCallback: callback
+        }
+        const callbacks = this.#callbacks[eventName];
+        if(callbacks) {
+            callbacks.push(callbackData);
+            return;
+        }
+        this.#callbacks[eventName] = [callbackData];
     }
 
     off(eventName, callback) {
@@ -26,6 +46,15 @@ export const Event = new (class {
         if(!event) {
             throw new EventNotDefined(eventName);
         }
-        event.unsubscribe(callback);
+        
+        const eventCallbacks = this.#callbacks[eventName];
+        if(!eventCallbacks) return;
+        
+        const callbacks = eventCallbacks.filter(
+            v => v.originalCallback === callback
+        );
+        for(const { callback } of callbacks) {
+            event.unsubscribe(callback);
+        }
     }
 })();
