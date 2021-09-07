@@ -12,6 +12,15 @@ export function print(text) {
     Command.run(`say Debug: ${text}`);
 }
 
-export function pjson(json) {
-    print(JSON.stringify(json));
+export function toJson(data, indent = 4) {
+    return JSON.stringify(data, (k, v) => {
+        if(typeof v === "function") {
+            return "[Function]";
+        }
+        return v;
+    }, indent);
+}
+
+export function pprint(data, indent) {
+    print(toJson(json, indent));
 }
