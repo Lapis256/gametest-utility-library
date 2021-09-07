@@ -85,3 +85,86 @@ Tick.setTimeout(() => {
     Tick.clearInterval(ID);
 }, 500);
 ```
+### Others
+#### print
+指定したオブジェクトをチャットに表示します。
+```js
+import { print } from "./gametest-utility-library/index.js";
+
+print("text");
+// text
+print(128);
+// 128
+print([1, 1, 2, 3, 5, 8, 13])
+// 1,1,2,3,5,8,13
+print({a: 2, b: 5, c: 6});
+// [Object Object]
+```
+複数指定することが可能で、空白で区切られて表示されます。
+```js
+print("text", "text2");
+// text text2
+```
+#### pprint
+連想配列をjsonとして処理してprintします。  
+jsonの処理には`toJson`を使用しています。
+```js
+import { pprint } from "./gametest-utility-library/index.js";
+
+pprint("text");
+// text
+pprint(128);
+// 128
+pprint([1, 1, 2, 3, 5, 8, 13])
+// 1,1,2,3,5,8,13
+pprint({a: 2, b: 5, c: 6});
+/*{
+    "a": 2,
+    "b": 5,
+    "c": 6
+}*/
+```
+#### error
+`§4ERROE: `が先頭につくprintです。
+```js
+import { error } from "./gametest-utility-library/index.js";
+
+error("text");
+// §4ERROE: text
+error(128);
+// §4ERROE: 128
+error([1, 1, 2, 3, 5, 8, 13])
+// §4ERROE: 1,1,2,3,5,8,13
+error({a: 2, b: 5, c: 6});
+// §4ERROE: [Object Object]
+```
+#### warn
+`§eWARN: `が先頭につくprintです。
+```js
+import { warn } from "./gametest-utility-library/index.js";
+
+warn("text");
+// §eWARN: text
+warn(128);
+// §eWARN: 128
+warn([1, 1, 2, 3, 5, 8, 13])
+// §eWARN: 1,1,2,3,5,8,13
+warn({a: 2, b: 5, c: 6});
+// §eWARN: [Object Object]
+```
+#### toJson
+JSON.stringifyのラッパーです。  
+インデントはデフォルトでスペース4つです。  
+また、オブジェクト内に関数があった場合値を`[Fanction]`に置き換えて処理します。
+```js
+import { print, toJson } from "./gametest-utility-library/index.js";
+
+print(toJson({a: 0}));
+/*{
+    "a": 0
+}*/
+print(toJson({a: 0}, 0));
+/*{"a": 0}*/
+print(toJson({a: function(){}}, 0));
+/*{"a": "[Function]"}*/
+```
