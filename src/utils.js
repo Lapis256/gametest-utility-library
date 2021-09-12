@@ -4,7 +4,7 @@ import { Command } from "./command.js";
 export function print(...obj) {
     const rawtext = JSON.stringify({
         rawtext: [{ text: obj.join(" ") }]
-    });
+    }).replaceAll("\\r\\n", "\\n");
     Command.run("tellraw @a " + rawtext);
 }
 
@@ -22,14 +22,24 @@ function isClass(obj) {
 }
 
 export function toJson(data, indent = 4) {
-    return JSON.stringify(data, (k, v) => {
-        if(isClass(v)) {
-            return `[class ${v.name}]`;
+    return JSON.stringify(data, (key, value) => {
+        switch(typeof value) {
+            case "function":
+                if(value.toString().startsWith("class ")) {
+                    return `[class ${value.name || key}]`;
+                }
+                return `[function ${value.name || key}]`;
+            
+            case "object":
+                let obj = {};
+                for(const i in value) {
+                    obj[i] = value[i];
+                }
+                return obj;
+            
+            default:
+                return value;
         }
-        else if(typeof v === "function") {
-            return `[function ${v.name}]`;
-        }
-        return v;
     }, indent);
 }
 
