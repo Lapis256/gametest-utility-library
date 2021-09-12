@@ -17,20 +17,27 @@ export function warn(...obj) {
 }
 
 function isClass(obj) {
-    return typeof obj === "function" &&
-           obj.toString().startsWith("class ");
+    return obj.toString().startsWith("class ");
+}
+
+function isGenerator(obj) {
+    return obj[Symbol.iterator].name === "[Symbol.iterator]" &&
+           typeof obj.next === "function";
 }
 
 export function toJson(data, indent = 4) {
     return JSON.stringify(data, (key, value) => {
         switch(typeof value) {
             case "function":
-                if(value.toString().startsWith("class ")) {
+                if(isClass(value)) {
                     return `[class ${value.name || key}]`;
                 }
                 return `[function ${value.name || key}]`;
             
             case "object":
+                if(isGenerator(value)) {
+                    return `[generator ${key || "Generator"}]`;
+                }
                 let obj = {};
                 for(const i in value) {
                     obj[i] = value[i];
@@ -49,29 +56,33 @@ export function pprint(...obj) {
 
 export function* range(start, stop, step) {
     if(!step) step = 1;
-    if(!stop) {
+    if(stop === undefined) {
         stop  = start;
         start = 0;
     }
-    for(let i = start; i < stop; i += step){
+    for(let i = start; step > 0 ? i < stop : i > stop; i += step){
         yield i;
     }
 }
 
+function argParser(range) {
+    if(typeof range === "number") {
+        return [ 0, range ];
+    }
+    return range;
+}
+
 export function* range2d(xRange, zRange) {
-    for(const x of range(xRange)) {
-        for(const z of range(zRange)) {
-            yield [x, z];
-        }
+    for(const x of range(...argParser(xRange)))
+    for(const z of range(...argParser(zRange))) {
+        yield [x, z];
     }
 }
 
 export function* range3d(xRange, yRange, zRange) {
-    for(const x of range(xRange)) {
-        for(const y of range(yRange)) {
-            for(const z of range(zRange)) {
-                yield [x, y, z];
-            }
-        }
+    for(const x of range(...argParser(xRange)))
+    for(const y of range(...argParser(yRange)))
+    for(const z of range(...argParser(zRange))) {
+        yield [x, y, z];
     }
 }
