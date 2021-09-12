@@ -46,3 +46,32 @@ export function toJson(data, indent = 4) {
 export function pprint(...obj) {
     print(...obj.map(o => toJson(o, 4)));
 }
+
+export function* range(start, stop, step) {
+    if(!step) step = 1;
+    if(!stop) {
+        stop  = start;
+        start = 0;
+    }
+    for(let i = start; i < stop; i += step){
+        yield i;
+    }
+}
+
+export function* range2d(xRange, zRange) {
+    for(const x of range(xRange)) {
+        for(const z of range(zRange)) {
+            yield [x, z];
+        }
+    }
+}
+
+export function* range3d(xRange, yRange, zRange) {
+    for(const x of range(xRange)) {
+        for(const y of range(yRange)) {
+            for(const z of range(zRange)) {
+                yield [x, y, z];
+            }
+        }
+    }
+}
