@@ -129,7 +129,7 @@ jsonの処理には`toJson`を使用しています。
 import { pprint } from "./gametest-utility-library/index.js";
 
 pprint("text");
-// text
+// "text"
 pprint(128);
 // 128
 pprint([1, 1, 2, 3, 5, 8, 13])
