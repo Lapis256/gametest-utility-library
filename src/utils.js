@@ -21,7 +21,8 @@ function isClass(obj) {
 }
 
 function isGenerator(obj) {
-    return obj[Symbol.iterator].name === "[Symbol.iterator]" &&
+    return obj[Symbol.iterator] &&
+           obj[Symbol.iterator].name === "[Symbol.iterator]" &&
            typeof obj.next === "function";
 }
 
@@ -48,6 +49,14 @@ export function toJson(data, indent = 4) {
                 return value;
         }
     }, indent);
+}
+
+export function objectKeys(obj) {
+    const result = [];
+    for(const key in obj) {
+        result.push(key);
+    }
+    return result;
 }
 
 export function pprint(...obj) {
