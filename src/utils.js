@@ -39,6 +39,9 @@ export function toJson(data, indent = 4) {
                 if(isGenerator(value)) {
                     return `[generator ${key || "Generator"}]`;
                 }
+                if(Array.isArray(value)) {
+                    return value;
+                }
                 let obj = {};
                 for(const i in value) {
                     obj[i] = value[i];
