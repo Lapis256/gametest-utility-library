@@ -1,6 +1,4 @@
-import { Commands } from "Minecraft";
 import { Command } from "./command.js";
-import { print } from "./utils.js";
 
 
 export const GameRule = new (class {

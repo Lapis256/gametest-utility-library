@@ -1,4 +1,4 @@
-import { World } from "Minecraft";
+import { World } from "mojang-minecraft";
 import { Command } from "./command.js";
 import { Tag } from "./tag.js";
 
@@ -38,5 +38,9 @@ export class Player {
 
     removeTag(tag) {
         return Tag.removeTag(this.#tagSelector, tag);
+    }
+
+    toString() {
+        return this.name;
     }
 }

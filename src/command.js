@@ -1,23 +1,16 @@
-import { Commands } from "Minecraft";
-import { CommandExecutionError } from "./errors.js";
+import { Commands, World } from "mojang-minecraft";
 
 
 export const Command = new (class {
-    #run(command, dimension) {
-        if(dimension) {
-            return Commands.run(command, dimension);
+    #run(command, dimension = "overworld") {
+        if(typeof dimension === "string") {
+            dimension = World.getDimension(dimension);
         }
-        return Commands.run(command);
+        return Commands.run(command, dimension);
     }
 
     run(command, dimension) {
-        try {
-            return this.#run(command, dimension);
-        }
-        catch(e) {
-            const status = JSON.parse(e);
-            throw new CommandExecutionError(command, status);
-        }
+        return this.#run(command, dimension);
     }
 
     runSafe(command, dimension) {
@@ -25,7 +18,7 @@ export const Command = new (class {
             return this.#run(command, dimension);
         }
         catch(e) {
-            return JSON.parse(e);
+            return e;
         }
     }
 

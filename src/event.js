@@ -1,4 +1,4 @@
-import { World } from "Minecraft";
+import { World } from "mojang-minecraft";
 import { EventNotDefined } from "./errors.js";
 import { print } from "./utils.js";
 

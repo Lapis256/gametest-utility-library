@@ -1,4 +1,4 @@
-import { Player, Entity } from "Minecraft";
+import { Player, Entity } from "mojang-minecraft";
 import { Command } from "./command.js";
 
 

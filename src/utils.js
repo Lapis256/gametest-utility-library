@@ -3,7 +3,7 @@ import { Command } from "./command.js";
 
 export function print(...obj) {
     const rawtext = JSON.stringify({
-        rawtext: [{ text: obj.join(" ") }]
+        rawtext: [{ text: obj.map(String).join(" ") }]
     }).replaceAll("\\r\\n", "\\n");
     Command.run("tellraw @a " + rawtext);
 }
@@ -47,6 +47,9 @@ export function toJson(data, indent = 4) {
                     obj[i] = value[i];
                 }
                 return obj;
+            
+            case "undefined":
+                return null;
             
             default:
                 return value;
