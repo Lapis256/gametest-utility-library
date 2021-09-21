@@ -1,5 +1,4 @@
 import { Event } from "./event.js";
-import { print } from "./utils.js";
 
 
 class Interval {

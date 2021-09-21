@@ -1,6 +1,5 @@
 import { World } from "mojang-minecraft";
 import { EventNotDefined } from "./errors.js";
-import { print } from "./utils.js";
 
 
 export const Event = new (class {

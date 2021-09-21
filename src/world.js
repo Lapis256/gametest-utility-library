@@ -1,22 +1,21 @@
 import { World as _World } from "mojang-minecraft";
 import { Dimension } from "./dimension.js";
 import { Player } from "./player.js";
+import { mergeObject } from "./utils/object.js";
 
 
 export const World = new (class {
-    #excludeAttrs = ["getDimension", "getPlayers"];
-
     constructor() {
-        for(const attr in _World) {
-            if(this.#excludeAttrs.includes(attr)) continue;
-            this[attr] = _World[attr];
-        }
+        mergeObject(this, _World, {
+            getDimension: this.#getDimension,
+            getPlayers: this.#getPlayers
+        });
     }
-    getDimension(name) {
+    #getDimension(name) {
         const dimension = _World.getDimension(name);
         return new Dimension(dimension);
     }
-    getPlayers() {
+    #getPlayers() {
         return Player.getAll();
     }
 })();

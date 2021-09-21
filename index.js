@@ -1,4 +1,4 @@
-export * from "./src/utils.js";
+export * from "./src/utils/index.js";
 export { Event } from "./src/event.js";
 export { GameRule } from "./src/gamerule.js";
 export { Command } from "./src/command.js";

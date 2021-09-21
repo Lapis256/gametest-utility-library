@@ -1,4 +1,5 @@
 import { Command } from "./command.js";
+import { mergeObject } from "./utils/object.js";
 
 
 export class Dimension {
@@ -6,10 +7,7 @@ export class Dimension {
     
     constructor(dimension) {
         this.#dimension = dimension;
-        
-        for(const attr in dimension) {
-            this[attr] = dimension[attr];
-        }
+        mergeObject(this, dimension);
     }
     commandRun(command) {
         return Command.run(command, this.#dimension);

@@ -1,6 +1,17 @@
 import { Commands, World } from "mojang-minecraft";
 
 
+class CommandResult {
+    constructor(isError, obj) {
+        this.isError = isError;
+        
+        for(const attr in obj) {
+            this[attr] = obj[attr];
+        }
+    }
+}
+
+
 export const Command = new (class {
     #run(command, dimension = "overworld") {
         if(typeof dimension === "string") {
@@ -15,10 +26,10 @@ export const Command = new (class {
 
     runSafe(command, dimension) {
         try {
-            return this.#run(command, dimension);
+            return new CommandResult(false, this.#run(command, dimension));
         }
         catch(e) {
-            return e;
+            return new CommandResult(true, e);
         }
     }
 
