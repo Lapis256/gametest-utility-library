@@ -1,7 +1,7 @@
 import { World as _World } from "mojang-minecraft";
 import { Dimension } from "./dimension.js";
 import { Player } from "./player.js";
-import { mergeObject } from "./utils/object.js";
+import { mergeObject } from "./object.js";
 
 
 export const World = new (class {
