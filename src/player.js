@@ -1,7 +1,7 @@
 import { World } from "mojang-minecraft";
 import { Command } from "./command.js";
 import { Tag } from "./tag.js";
-import { mergeObject } from "./utils/object.js";
+import { mergeObject } from "./object.js";
 
 
 export class Player {
