@@ -1,4 +1,5 @@
-import { toJson } from "./utils.js";
+import { Command } from "../command.js";
+import { toJson } from "./string.js";
 
 
 export function print(...obj) {
