@@ -1,8 +1,6 @@
-export function mergeObject(...objects) {
-    const result = {};
+export function mergeObject(base, ...objects) {
     for(const obj of objects)
     for(const key in obj) {
-        result[key] = obj[key];
+        base[key] = obj[key];
     }
-    return result;
 }
