@@ -41,11 +41,3 @@ export function toJson(data, indent = 4) {
         }
     }, indent);
 }
-
-export function objectKeys(obj) {
-    const result = [];
-    for(const key in obj) {
-        result.push(key);
-    }
-    return result;
-}
