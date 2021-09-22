@@ -1,6 +1,3 @@
-import { Command } from "../command.js";
-
-
 function isClass(obj) {
     return obj.toString().startsWith("class ");
 }
