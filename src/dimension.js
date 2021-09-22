@@ -1,5 +1,5 @@
 import { Command } from "./command.js";
-import { mergeObject } from "./utils/object.js";
+import { mergeObject } from "./object.js";
 
 
 export class Dimension {
