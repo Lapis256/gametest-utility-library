@@ -11,7 +11,6 @@ class CommandResult {
     }
 }
 
-
 export const Command = new (class {
     #run(command, dimension = "overworld") {
         if(typeof dimension === "string") {
@@ -41,7 +40,9 @@ export const Command = new (class {
 
         const selectorArray = [];
         for(const key in selectors) {
-            selectorArray.push(`${key}=${selectors[key]}`);
+            const rawValue = selectors[key];
+            const value = rawValue.includes(" ") ? `"${rawValue}"` : rawValue;
+            selectorArray.push(`${key}=${value}`);
         }
         return `${selector}[${selectorArray.join(",")}]`;
     }

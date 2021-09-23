@@ -1,5 +1,6 @@
 import { World } from "mojang-minecraft";
 import { EventNotDefined } from "./errors.js";
+import { error } from "./utils/index.js";
 
 
 export const Event = new (class {
@@ -20,7 +21,7 @@ export const Event = new (class {
                 callback(eventData);
             }
             catch(e) {
-                print("Event Running Error: " + e);
+                error("Event Running Error: " + e);
             }
         }
         
