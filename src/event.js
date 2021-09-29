@@ -35,6 +35,31 @@ export const Event = new (class {
         this.#callbacks.push(callbackData);
     }
 
+    once(eventName, callback) {
+        const event = World.events[eventName];
+        if(!event) {
+            throw new EventNotDefined(eventName);
+        }
+        const newCallback = eventData => {
+            try {
+                callback(eventData);
+            }
+            catch(e) {
+                error("Event Running Error: " + e);
+            }
+            this.off(callback);
+        }
+        
+        event.subscribe(newCallback);
+        
+        const callbackData = {
+            eventName,
+            callback: newCallback,
+            originalCallback: callback
+        }
+        this.#callbacks.push(callbackData);
+    }
+
     off(callback) {
         this.#callbacks = this.#callbacks.filter(c => {
             if(c.originalCallback !== callback) {
