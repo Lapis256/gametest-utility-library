@@ -1,13 +1,12 @@
 import { Commands, World } from "mojang-minecraft";
+import { mergeObject } from "./object.js";
 
 
 class CommandResult {
     constructor(isError, obj) {
         this.isError = isError;
         
-        for(const attr in obj) {
-            this[attr] = obj[attr];
-        }
+        mergeObject(this, obj);
     }
 }
 

@@ -20,3 +20,13 @@ export function error(...obj) {
 export function warn(...obj) {
     print("§eWARN:", ...obj);
 }
+
+export function debug(obj) {
+    print(obj);
+    return obj;
+}
+
+export function pdebug(obj) {
+    pprint(obj);
+    return obj;
+}

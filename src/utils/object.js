@@ -13,3 +13,13 @@ export function objectKeys(obj) {
 export function objectValues(obj) {
     return objectEntries(obj).map(([_, v]) => v);
 }
+
+export function genArray(iter, func, check) {
+    if(!check) check = (i) => true;
+    const result = [];
+    for(const i of iter) {
+        if(!check(i)) continue;
+        result.push(func(i));
+    }
+    return result;
+}
