@@ -21,7 +21,7 @@ export const Event = new (class {
                 callback(eventData);
             }
             catch(e) {
-                error("Event Running Error: " + e);
+                console.error("Event Running Error: " + e);
             }
         }
         
@@ -45,7 +45,7 @@ export const Event = new (class {
                 callback(eventData);
             }
             catch(e) {
-                error("Event Running Error: " + e);
+                console.error("Event Running Error: " + e);
             }
             this.off(callback);
         }

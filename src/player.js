@@ -14,6 +14,7 @@ export class Player {
         mergeObject(this, player);
 
         this.#player = player;
+        this.player = player;
         this.#tagSelector = Command.selectorBuilder(player.name);
 
         this.#inventory = player.getComponent("inventory").container;
