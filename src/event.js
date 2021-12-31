@@ -1,5 +1,6 @@
 import { World } from "mojang-minecraft";
 import { EventNotDefined } from "./errors.js";
+import { error } from "./utils/index.js";
 
 
 export const Event = new (class {
@@ -20,8 +21,33 @@ export const Event = new (class {
                 callback(eventData);
             }
             catch(e) {
-                print("Event Running Error: " + e);
+                console.error("Event Running Error: " + e);
             }
+        }
+        
+        event.subscribe(newCallback);
+        
+        const callbackData = {
+            eventName,
+            callback: newCallback,
+            originalCallback: callback
+        }
+        this.#callbacks.push(callbackData);
+    }
+
+    once(eventName, callback) {
+        const event = World.events[eventName];
+        if(!event) {
+            throw new EventNotDefined(eventName);
+        }
+        const newCallback = eventData => {
+            try {
+                callback(eventData);
+            }
+            catch(e) {
+                console.error("Event Running Error: " + e);
+            }
+            this.off(callback);
         }
         
         event.subscribe(newCallback);

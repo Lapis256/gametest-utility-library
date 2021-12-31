@@ -1,12 +1,26 @@
-export function* range(start, stop, step) {
+import { AdvancedIterator } from "../iterator.js";
+
+class Range extends AdvancedIterator {
+    constructor(start, stop, step) {
+        const check = step > 0 ?
+            i => i < stop :
+            i => i > stop;
+
+        super((function*() {
+            for(let i = start; check(i); i += step){
+                yield i;
+            }
+        })());
+    }
+}
+
+export function range(start, stop, step) {
     if(!step) step = 1;
     if(stop === undefined) {
         stop  = start;
         start = 0;
     }
-    for(let i = start; step > 0 ? i < stop : i > stop; i += step){
-        yield i;
-    }
+    return new Range(start, stop, step);
 }
 
 function argParser(range) {

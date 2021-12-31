@@ -1,16 +1,14 @@
 import { Commands, World } from "mojang-minecraft";
+import { mergeObject } from "./object.js";
 
 
 class CommandResult {
     constructor(isError, obj) {
         this.isError = isError;
         
-        for(const attr in obj) {
-            this[attr] = obj[attr];
-        }
+        mergeObject(this, obj);
     }
 }
-
 
 export const Command = new (class {
     #run(command, dimension = "overworld") {
@@ -41,7 +39,9 @@ export const Command = new (class {
 
         const selectorArray = [];
         for(const key in selectors) {
-            selectorArray.push(`${key}=${selectors[key]}`);
+            const rawValue = selectors[key];
+            const value = rawValue.includes(" ") ? `"${rawValue}"` : rawValue;
+            selectorArray.push(`${key}=${value}`);
         }
         return `${selector}[${selectorArray.join(",")}]`;
     }
