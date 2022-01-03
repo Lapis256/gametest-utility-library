@@ -7,3 +7,4 @@ export { Tick } from "./tick.js";
 export { Tag } from "./tag.js";
 export { Player } from "./player.js";
 export { Scoreboard } from "./scoreboard.js";
+export { EventEmitter } from "./eventEmitter.js";
