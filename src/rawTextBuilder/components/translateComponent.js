@@ -15,7 +15,7 @@ export default class TranslateComponent extends Base {
 
     build() {
         const result = { [this.name]: this.value.translate };
-        if(this.value.with <= 0) {
+        if(this.value.with.length <= 0) {
             return result;
         }
         return { ...result, with: this.#getWith() };

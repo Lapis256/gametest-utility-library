@@ -1,7 +1,7 @@
 import { Dimension, Entity } from "mojang-minecraft";
 
 
-export default class Command {
+export class Command {
     #run(command, object) {
         if(object.runCommand === undefined) return;
         return object.runCommand(command);
