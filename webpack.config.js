@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
     mode: "production",
     target: "es2020",
-    entry: "./src/index.js",
+    entry: "./index.js",
     externals: [
         "mojang-minecraft",
         "mojang-gametest"

@@ -8,4 +8,4 @@ export { Tag } from "./tag.js";
 export { Player } from "./player.js";
 export { Scoreboard } from "./scoreboard.js";
 export { EventEmitter } from "./eventEmitter.js";*/
-export { RawTextBuilder } from "./rawTextBuilder/index.js";
+export { RawTextBuilder } from "./src/rawTextBuilder/index.js";
