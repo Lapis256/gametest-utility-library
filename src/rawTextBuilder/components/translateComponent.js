@@ -1,16 +1,16 @@
 import Base from "./rawTextComponent.js";
+import RawTextBuilder from "../rawTextBuilder.js";
 
 
 export default class TranslateComponent extends Base {
     name = "translate";
 
     #getWith() {
-        return this.value.with.map(value => {
-            if(value instanceof RawTextBuilder) {
-                return value.build();
-            }
-            return value;
-        });
+        const [ first, ..._ ] = this.value.with;
+        if(first instanceof RawTextBuilder) {
+            return first.build();
+        }
+        return this.value.with;
     }
 
     build() {
