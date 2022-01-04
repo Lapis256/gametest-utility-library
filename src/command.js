@@ -1,28 +1,17 @@
-import { Commands, World } from "mojang-minecraft";
-import { mergeObject } from "./object.js";
+import { Dimension, Entity } from "mojang-minecraft";
 
 
-class CommandResult {
-    constructor(isError, obj) {
-        this.isError = isError;
-        
-        mergeObject(this, obj);
-    }
-}
-
-export const Command = new (class {
-    #run(command, dimension = "overworld") {
-        if(typeof dimension === "string") {
-            dimension = World.getDimension(dimension);
-        }
-        return Commands.run(command, dimension);
+export default class Command {
+    #run(command, object) {
+        if(object.runCommand === undefined) return;
+        return object.runCommand(command);
     }
 
-    run(command, dimension) {
-        return this.#run(command, dimension);
+    static run(command, object) {
+        return this.#run(command, object);
     }
 
-    runSafe(command, dimension) {
+    static runSafe(command, object) {
         try {
             return new CommandResult(false, this.#run(command, dimension));
         }
@@ -31,7 +20,7 @@ export const Command = new (class {
         }
     }
 
-    selectorBuilder(selector, selectors) {
+    static selectorBuilder(selector, selectors) {
         if(!selectors) {
             if(selector.startsWith("@")) return selector;
             else return `"${selector}"`;
@@ -45,4 +34,4 @@ export const Command = new (class {
         }
         return `${selector}[${selectorArray.join(",")}]`;
     }
-})();
+};
