@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --config webpack.config.prod.js",
+    "dev": "webpack --config webpack.config.dev.js"
   },
   "author": "Lapis256",
   "license": "MIT",

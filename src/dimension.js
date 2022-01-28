@@ -1,18 +1,24 @@
-import { Command } from "./command.js";
-import { mergeObject } from "./object.js";
+import { world } from "mojang-minecraft";
 
 
-export class Dimension {
-    #dimension;
-    
-    constructor(dimension) {
-        this.#dimension = dimension;
-        mergeObject(this, dimension);
+const dimensions = [
+    "overworld",
+    "nether",
+    "the end"
+].map(name => ({ name, dim: world.getDimension(name)}));
+Object.freeze(dimensions);
+
+
+class _Dimension {
+    getName(dimension) {
+        const { name } = dimensions.find(({ dim }) => dim === dimension);
+        return name;
     }
-    commandRun(command) {
-        return Command.run(command, this.#dimension);
-    }
-    commandRunSafe(command) {
-        return Command.runSafe(command, this.#dimension);
+
+    get(dimName) {
+        const { dim } = dimensions.find(({ name }) => name === dimName);
+        return dim;
     }
 }
+
+export const Dimension = new _Dimension();
