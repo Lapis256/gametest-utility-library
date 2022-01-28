@@ -67,7 +67,7 @@ export default class RawTextBuilder {
         return { rawtext: this.#buildValues() };
     }
 
-    buildJSON() {
+    buildJson() {
         return JSON.stringify(this.build());
     }
 }

@@ -1,4 +1,6 @@
-export class AdvancedIterator {
+const CANCEL = Symbol("Cancel");
+
+export class Iterator {
     #iterator;
 
     constructor(iterator) {
@@ -6,34 +8,35 @@ export class AdvancedIterator {
     }
 
     *[Symbol.iterator]() {
-        for(const i of this.#iterator){
-            yield i;
+        yield* this.#iterator;
+    }
+
+    #wrapper(func) {
+        const iterator = this.#iterator;
+        const iter = function* () {
+            for(const v of iterator) {
+                const result = func(v);
+                if(result === CANCEL) {
+                    continue;
+                }
+                yield result;
+            }
         }
+        this.#iterator = iter();
+        return this;
     }
 
     map(func) {
-        const iterator = this.#iterator;
-        return new AdvancedIterator((function*() {
-            for(const i of iterator) {
-                yield func(i);
-            }
-        })());
+        return this.#wrapper(func);
     }
 
     filter(check) {
-        const iterator = this.#iterator;
-        return new AdvancedIterator((function*() {
-            for(const i of iterator) {
-                if(!check(i)) continue;
-                yield i;
-            }
-        })());
+        return this.#wrapper(v => check(v) ? v : CANCEL);
     }
 
     find(check) {
         for(const i of this.#iterator) {
-            if(!check(i)) continue;
-            return i;
+            if(check(i)) return i;
         }
     }
 }
