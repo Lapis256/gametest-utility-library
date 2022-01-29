@@ -13,6 +13,8 @@ import "./src/commandInitializer.js";
 export * from "./src/utils/index.js";
 export * from "./src/debug/index.js";
 export { Tick } from "./src/tick.js";
+// export { Player } from "./src/player.js";
 export { Command } from "./src/command.js";
 export { Dimension } from "./src/dimension.js";
+export { Gamemode } from "./src/gamemode.js";
 export { RawTextBuilder } from "./src/rawTextBuilder/index.js";
