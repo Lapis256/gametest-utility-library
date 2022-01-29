@@ -26,60 +26,19 @@ gametestに便利な機能を提供するライブラリです。
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## 導入方法
-ダウンロードし scripts フォルダに以下のように貼り付けてください。
-```
-scripts
-├─ gametest-utility-library (名前を変更しても構いません)
-│  ├─ index.js
-│  └─ src
-│     └─ ...
-└─ index.js (manifest.json の entry で指定したファイル)
-```
-
+[Releases](https://github.com/Lapis256/gametest-utility-library/releases)からダウンロードし`scripts`フォルダ内に入れてください。入れる際に名前を変更することも可能ですが、インポート時に変更した名前を使う必要があります。
 ## 使い方
 ### import方法
 ```js
 // ライブラリのフォルダ名に合わせて変更してください。
-import { <インポートするもの> } from "./gametest-utility-library/index.js";
+import { <インポートするもの> } from "./gametest-utility-lib.js";
 ```
 
-### Event
-イベントを簡潔に書けるようになります。
-#### 基本的な使い方
-```js
-import { Event } from "./gametest-utility-library/index.js";
-
-Event.on("<イベント名>", eventData => {
-    // 処理
-});
-```
-チャットイベントの場合は以下のようになります。
-```js
-import { Event } from "./gametest-utility-library/index.js";
-
-Event.on("beforeChat", eventData => {
-    if(!eventData.message.startsWith(".neko")) return;
-    eventData.message = "にゃーん";
-});
-```
-#### 削除する方法
-`Event.off`に登録したコールバック関数を渡す事で削除可能です。
-```js
-import { Event } from "./gametest-utility-library/index.js";
-
-const callback = (eventData) => {
-    // 処理
-}
-
-Event.on("<イベント名>", callback);
-
-Event.off(callback);
-```
 ### Tick
 数tick毎、数tick後と言った処理を簡潔に書けるようになります。
 #### 基本的な使い方
 ```js
-import { Tick } from "./gametest-utility-library/index.js";
+import { Tick } from "./gametest-utility-lib.js";
 
 Tick.setInterval(() => {
     // 20tick毎に実行する処理
@@ -92,7 +51,7 @@ Tick.setTimeout(() => {
 #### 止める方法
 `Tick.setInterval`と`Tick.setTimeout`はidを返し、それぞれのidを`Tick.clearInterval`、`Tick.clearTimeout`に渡すことで止めることができます。
 ```js
-import { Tick } from "./gametest-utility-library/index.js";
+import { Tick } from "./gametest-utility-lib.js";
 
 const ID = Tick.setInterval(() => {
     // 20tick毎に実行する処理
@@ -106,7 +65,7 @@ Tick.setTimeout(() => {
 #### print
 指定したオブジェクトをチャットに表示します。
 ```js
-import { print } from "./gametest-utility-library/index.js";
+import { print } from "./gametest-utility-lib.js";
 
 print("text");
 // text
@@ -124,9 +83,9 @@ print("text", "text2");
 ```
 #### pprint
 連想配列をjsonとして処理してprintします。  
-jsonの処理には`toJson`を使用しています。
+jsonの処理には[toJson](#tojson)を使用しています。
 ```js
-import { pprint } from "./gametest-utility-library/index.js";
+import { pprint } from "./gametest-utility-lib.js";
 
 pprint("text");
 // "text"
@@ -141,40 +100,13 @@ pprint({a: 2, b: 5, c: 6});
     "c": 6
 }*/
 ```
-#### error
-`§4ERROE: `が先頭につくprintです。
-```js
-import { error } from "./gametest-utility-library/index.js";
 
-error("text");
-// §4ERROE: text
-error(128);
-// §4ERROE: 128
-error([1, 1, 2, 3, 5, 8, 13])
-// §4ERROE: 1,1,2,3,5,8,13
-error({a: 2, b: 5, c: 6});
-// §4ERROE: [object Object]
-```
-#### warn
-`§eWARN: `が先頭につくprintです。
-```js
-import { warn } from "./gametest-utility-library/index.js";
-
-warn("text");
-// §eWARN: text
-warn(128);
-// §eWARN: 128
-warn([1, 1, 2, 3, 5, 8, 13])
-// §eWARN: 1,1,2,3,5,8,13
-warn({a: 2, b: 5, c: 6});
-// §eWARN: [object Object]
-```
 #### toJson
 JSON.stringifyのラッパーです。  
 インデントはデフォルトでスペース4つです。  
 また、オブジェクト内に関数、クラスがあった場合値をそれぞれ`[function <Function Name>]`、`[class <Class Name>]`に置き換えて処理します。
 ```js
-import { print, toJson } from "./gametest-utility-library/index.js";
+import { print, toJson } from "./gametest-utility-lib.js";
 
 print(toJson({a: 0}));
 /*{
