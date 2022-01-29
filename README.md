@@ -9,17 +9,12 @@ gametestに便利な機能を提供するライブラリです。
 - [導入方法](#%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)
 - [使い方](#%E4%BD%BF%E3%81%84%E6%96%B9)
   - [import方法](#import%E6%96%B9%E6%B3%95)
-  - [Event](#event)
-    - [基本的な使い方](#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E4%BD%BF%E3%81%84%E6%96%B9)
-    - [削除する方法](#%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95)
   - [Tick](#tick)
-    - [基本的な使い方](#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E4%BD%BF%E3%81%84%E6%96%B9-1)
+    - [基本的な使い方](#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E4%BD%BF%E3%81%84%E6%96%B9)
     - [止める方法](#%E6%AD%A2%E3%82%81%E3%82%8B%E6%96%B9%E6%B3%95)
   - [Others](#others)
     - [print](#print)
     - [pprint](#pprint)
-    - [error](#error)
-    - [warn](#warn)
     - [toJson](#tojson)
 
 </details>
